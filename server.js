@@ -1,4 +1,3 @@
-
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
@@ -9,14 +8,18 @@ const WEBHOOK_URL = 'https://discord.com/api/webhooks/1358647203111108618/1STfJw
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: `New visitor IP: ${ip}` })
-  });
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: `New visitor IP: ${ip}` })
+    });
+  } catch (error) {
+    console.error('Failed to send IP to Discord:', error);
+  }
 
   res.sendFile(__dirname + '/public/index.html');
 });

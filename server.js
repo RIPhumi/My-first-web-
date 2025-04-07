@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const WEBHOOK_URL = 'https://discord.com/api/webhooks/1226857197266665504/M5HJek8gGpJDsnsxxpQWD5D7ZhE-SGrZXlM9zBDZV7DB7ArFvLzIRUP9Q25U9hr3G7Au';
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1358665304955293696/xKGDNeRql8slqQPsWTmUHvayCKR_xqsSBnUA-ME9xovHXfoiM9AwCn3OUqkCnH2qJFgt';
 
 app.use(express.static('public'));
 

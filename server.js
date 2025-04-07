@@ -9,6 +9,7 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
   fetch(WEBHOOK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
